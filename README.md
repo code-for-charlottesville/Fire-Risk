@@ -53,6 +53,7 @@ We're going to build the following **deliverables**:
 
 ## Data
 All data for this project will come from the Charlottesville open data portal
+
 | DATASET    | FIELD                | URL                                                                                | Open Portal Dataset               | Field Alias@URL               |
 |------------|----------------------|------------------------------------------------------------------------------------|-----------------------------------|-------------------------------|
 | Fire_model | GPIN                 | https://opendata.charlottesville.org/datasets/parcel-area-details                  | Parcel Area Details               | GeoParcelIdentificationNumber |
