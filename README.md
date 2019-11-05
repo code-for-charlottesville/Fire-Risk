@@ -1,5 +1,7 @@
 Join our Meetup group here: https://www.meetup.com/Code-for-Charlottesvile/
 
+Join our Slack page: codeforcville.slack.com
+
 Our slides for tonight: https://tinyurl.com/CFChacknight
 
 # Building a Fire Risk Score for the Charlottesville Fire Department and a Website to Educate Citizens About Their Fire Risk
