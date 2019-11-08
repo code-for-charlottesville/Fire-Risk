@@ -13,8 +13,22 @@ USAGE:
 	python3 merge_data.py [CSV_1_Name or --help] [CSV_1_Path] [CSV_2_Name] [CSV_2_Path] ...
 """
 
-def mergeInData(csv, name, mergedCsv):
+
+def _formatColumnName(col):
     """
+    Using camel case for column names
+    """
+    pass
+
+def _isSharedAttribute(name, col):
+    """
+    returns True if the attribute is shared (i.e. don't add prefix), False otherwise
+    """
+    pass
+
+def _mergeInData(csv, name, mergedCsv):
+    """
+    merges in data from csv into mergedCsv, passed by reference
     """
     logging.info("Reading in csv: %s", csv)
     df = pd.read_csv(csv)
@@ -37,6 +51,6 @@ if __name__ == '__main__':
     for i in range(1,len(sys.argv), 2):
         csv = sys.argv[i+1]
         name = sys.argv[i]
-        if mergeInData(csv, name, mergedCsv) == False:
+        if _mergeInData(csv, name, mergedCsv) == False:
             logging.error("Error merging: %s", csv)
             sys.exit(1)
