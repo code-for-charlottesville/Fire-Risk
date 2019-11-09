@@ -30,7 +30,8 @@ def _normalizeCol(csvName, col):
         if col == "parcelnumber": return "PIN"
         if col == "zoning": return "zoning"
 
-    return col
+    # add suffix if not standardized
+    return "{}-{}".format(csvName, col)
 
 
 def _fieldIsWanted(csvName, col):
@@ -64,9 +65,12 @@ def _mergeInData(csv, name, mergedCsv):
             df = df.drop(columns=[col])
 
     logging.debug("updated columns in {}: {}".format(name, df.columns))
-    # # if column is good, add value from each row
-    # for index, row in df.iterrows():
-    #     pass
+    
+    # return this chart if there's nothing in the current chart
+    if len(mergedCsv.index) == 0:
+        return df
+    # else return merged CSV on "PIN"
+    return mergedCsv.join(df.set_index('PIN'), on='PIN')
 
 
 if __name__ == '__main__':
@@ -77,10 +81,9 @@ if __name__ == '__main__':
     # init data file
     logging.basicConfig(level=logging.DEBUG)
     # start merge
-    mergedCsv = None
+    mergedCsv = pd.DataFrame()
     for i in range(1, len(sys.argv), 2):
         csv = sys.argv[i + 1]
         name = sys.argv[i]
-        if _mergeInData(csv, name, mergedCsv) == False:
-            logging.error("Error merging: %s", csv)
-            sys.exit(1)
+        mergedCsv = _mergeInData(csv, name, mergedCsv)
+        logging.debug("merged in chart {}:\n{}".format(name, mergedCsv))
