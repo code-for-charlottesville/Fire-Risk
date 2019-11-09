@@ -12,6 +12,10 @@ USAGE:
 	python3 merge_data.py [CSV_1_Name or --help] [CSV_1_Path] [CSV_2_Name] [CSV_2_Path] ...
 """
 
+PARCEL_AREA_DETAILS = "parcel_area"
+REAL_ESTATE_COMMERCIAL_DETAILS = "real_estate_commercial"
+REAL_ESTATE_RESIDENTIAL_DETAILS = "real_estate_residential"
+
 
 def _formatColumnName(col):
     """
@@ -25,11 +29,13 @@ def _normalizeCol(csvName, col):
     returns shared attribute name is it is one
     """
     col = col.lower()
-    if csvName == "parcel_area_details":
+    if csvName == PARCEL_AREA_DETAILS:
         if col == "geoparcelidentificationnumber": return "GPIN"
         if col == "parcelnumber": return "PIN"
         if col == "zoning": return "zoning"
 
+    if csvName == REAL_ESTATE_COMMERCIAL_DETAILS:
+        if col == "parcelnumber": return "PIN"
     # add suffix if not standardized
     return "{}-{}".format(csvName, col)
 
@@ -39,11 +45,22 @@ def _fieldIsWanted(csvName, col):
     determines if field is wanted based on the csv name
     """
     col = col.lower()
-    if csvName == "parcel_area_details":
+    if csvName == PARCEL_AREA_DETAILS:
         return col in [
             "objectid", "assessment", "geoparcelidentificationnumber",
             "legaldescription", "lotsquarefeet", "parcelnumber", "zoning",
             "esr_oid"
+        ]
+
+    if csvName == REAL_ESTATE_COMMERCIAL_DETAILS:
+        return col in [
+            "recordid_int",
+            "parcelnumber",
+            "usecode",
+            "yearbuilt",
+            "grossarea",
+            "storyheigt",
+            "numberofstories",
         ]
 
     return False
@@ -65,7 +82,7 @@ def _mergeInData(csv, name, mergedCsv):
             df = df.drop(columns=[col])
 
     logging.debug("updated columns in {}: {}".format(name, df.columns))
-    
+
     # return this chart if there's nothing in the current chart
     if len(mergedCsv.index) == 0:
         return df
