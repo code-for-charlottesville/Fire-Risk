@@ -43,7 +43,7 @@ def _normalizeCol(csvName, col):
     returns shared attribute name is it is one
     """
     col = col.lower()
-    if col in SHARED_ATTRIBUTES or col == INDEX: return col
+    if col == INDEX: return col
     # add suffix if not standardized
     return "{}-{}".format(csvName, col)
 
@@ -132,7 +132,7 @@ def _mergeInData(csv, name, mergedCsv):
     if len(mergedCsv.index) == 0:
         return df
     # else return merged CSV on index
-    merged = mergedCsv.combine_first(df)
+    merged = mergedCsv.join(df.set_index(INDEX), on=INDEX)
     # drop duplicates, if any
     merged.drop_duplicates(subset=[INDEX], inplace=True)
     return merged
