@@ -6,6 +6,10 @@ import logging
 import sys
 import psycopg2
 from sqlalchemy import create_engine
+import sql
+import csv
+from io import StringIO
+import numpy as np
 
 USAGE = """
 Merge CSVs for fire-risk data
@@ -115,8 +119,11 @@ def _insertIntoPostgres(df):
     """
     inserts data into postgres
     """
+    table = "parcels"
     engine = create_engine(POSTGRES_ENDPOINT)
-    df.to_sql("parcels", engine)
+    df.to_sql(table, engine)
+    logging.debug("inserted data into db: {}".format(
+        engine.execute('SELECT * FROM "parcels"').fetchall()))
 
 
 if __name__ == '__main__':
