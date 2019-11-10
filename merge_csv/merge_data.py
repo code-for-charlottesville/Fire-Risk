@@ -51,6 +51,9 @@ def _combineSharedAttributes(df):
         else:
             yearbuilt.append(row["real_estate_residential-yearbuilt"])
 
+    df = df.drop(columns=[
+        "real_estate_commercial-yearbuilt", "real_estate_residential-yearbuilt"
+    ])
     df.insert(0, "yearbuilt", yearbuilt, True)
     return df
 
