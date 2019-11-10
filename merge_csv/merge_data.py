@@ -10,6 +10,7 @@ import sql
 import csv
 from io import StringIO
 import numpy as np
+import math
 
 USAGE = """
 Merge CSVs for fire-risk data
@@ -36,6 +37,22 @@ SHARED_ATTRIBUTES = ["usecode", "yearbuilt"]
 ## postgres config ##
 #####################
 POSTGRES_ENDPOINT = "postgres://postgres:mysecretpassword@127.0.0.1:5431/firerisk"
+
+
+def _combineSharedAttributes(df):
+    """
+    combine shared attributes to make more cleaner columns
+    """
+    usecode = []
+    yearbuilt = []
+    for index, row in df.iterrows():
+        if math.isnan(row["real_estate_residential-yearbuilt"]):
+            yearbuilt.append(row["real_estate_commercial-yearbuilt"])
+        else:
+            yearbuilt.append(row["real_estate_residential-yearbuilt"])
+
+    df.insert(0, "yearbuilt", yearbuilt, True)
+    return df
 
 
 def _normalizeCol(csvName, col):
@@ -168,6 +185,7 @@ if __name__ == '__main__':
         name = sys.argv[i]
         mergedCsv = _mergeInData(csv, name, mergedCsv)
         logging.debug("merged in chart {}:\n{}".format(name, mergedCsv))
+    mergedCsv = _combineSharedAttributes(mergedCsv)
     # output csv to file
     mergedCsv.to_csv("merged.csv", index=INDEX)
     # insert into postgres
