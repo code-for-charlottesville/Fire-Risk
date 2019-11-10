@@ -1,29 +1,27 @@
-# Merging and Indexing Data Setup
+# Merge_CSV
 
-A Python simple python script and development environment to index and merge data for the fire-risk project.
+This directory contains the development environment for merging in multiple csv files from the [charlottesville open data portal]([https://opendata.charlottesville.org](https://opendata.charlottesville.org/)) into a singular, large csv file and postgres database.
 
-## Setup and Run
+## Fields
 
-Requirements:
+- Every row in this data is based on a [parcel identification number]([https://en.wikipedia.org/wiki/Assessor%27s_parcel_number](https://en.wikipedia.org/wiki/Assessor's_parcel_number)), since all rows in the original data are also tied to that ID. This is the index of the overall DB. There should not be any duplicate PINs. 
+- The only shared attributes I was able to find were "ParcelNumber" (shared by all original data), "usecode" (shared by residential/commercial), and "yearbuilt" (shared by residential/commercial).
 
-- python3
-- pip3
-- docker and docker-compose
+The outputfile is in the root of this directory [merged.json](./merged.json). 
 
-Steps:
+## Run it
 
 ```bash
-# install requirements
-$ cd elastic-kibana
-$ sudo pip3 install -r requirements.txt
-..
-# make sure the script compiles
-$ python3 merge_data.py --help
-$ docker-compose up -d
+# start environment
+docker-compose up -d --build
+# install
+sudo pip3 install -r requirements.txt
+# run bash script
+./run.sh
 ...
-# index data into local endpoint
-$ python merge_data.py
 ```
+
+
 
 ## Authors
 

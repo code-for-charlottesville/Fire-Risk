@@ -121,9 +121,12 @@ def _insertIntoPostgres(df):
     """
     table = "parcels"
     engine = create_engine(POSTGRES_ENDPOINT)
+    logging.debug("dropping previous table")
+    engine.execute('drop table if exists {}'.format(table))
+    logging.debug("inserting new data")
     df.to_sql(table, engine)
     logging.debug("inserted data into db: {}".format(
-        engine.execute('SELECT * FROM "parcels"').fetchall()))
+        engine.execute('SELECT * FROM {}'.format(table)).fetchall()))
 
 
 if __name__ == '__main__':
@@ -132,7 +135,8 @@ if __name__ == '__main__':
         print(USAGE)
         sys.exit(1)
     # init data file
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(filename="merge_data.log", level=logging.DEBUG)
+
     # start merge
     mergedCsv = pd.DataFrame()
     for i in range(1, len(sys.argv), 2):
