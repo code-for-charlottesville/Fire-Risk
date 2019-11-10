@@ -4,6 +4,8 @@ import pandas as pd
 import json
 import logging
 import sys
+import psycopg2
+from sqlalchemy import create_engine
 
 USAGE = """
 Merge CSVs for fire-risk data
@@ -16,7 +18,9 @@ PARCEL_AREA_DETAILS = "parcel_area"
 REAL_ESTATE_COMMERCIAL_DETAILS = "real_estate_commercial"
 REAL_ESTATE_RESIDENTIAL_DETAILS = "real_estate_residential"
 INDEX = "parcelnumber"
-SHARED_ATTRIBUTES = [ "usecode", "yearbuilt"]
+SHARED_ATTRIBUTES = ["usecode", "yearbuilt"]
+
+POSTGRES_ENDPOINT = "postgres://postgres:mysecretpassword@127.0.0.1:5431/firerisk"
 
 
 def _normalizeCol(csvName, col):
@@ -107,6 +111,14 @@ def _mergeInData(csv, name, mergedCsv):
     return merged
 
 
+def _insertIntoPostgres(df):
+    """
+    inserts data into postgres
+    """
+    engine = create_engine(POSTGRES_ENDPOINT)
+    df.to_sql("parcels", engine)
+
+
 if __name__ == '__main__':
     # parse args
     if len(sys.argv) < 2 or sys.argv[1] == "--help":
@@ -123,3 +135,5 @@ if __name__ == '__main__':
         logging.debug("merged in chart {}:\n{}".format(name, mergedCsv))
     # output csv to file
     mergedCsv.to_csv("merged.csv", index=INDEX)
+    # insert into postgres
+    _insertIntoPostgres(mergedCsv)
