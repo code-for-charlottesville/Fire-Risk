@@ -18,12 +18,14 @@ docker-compose up -d --build
 sudo pip3 install -r requirements.txt
 # run bash script
 ./run.sh
-...
+downloading
+merging data
+done
 ```
 
-
+You can edit the postgres endpoint by in `merge_data.py`. 
 
 ## Authors
 
-- David Goldstein [dgoldstein1](https://github.com/dgoldstein1)
+- [David Goldstein](www.davidcharlesgoldstein.com?merge_csv)
 
