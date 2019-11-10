@@ -18,12 +18,23 @@ USAGE:
 	python3 merge_data.py [CSV_1_Name or --help] [CSV_1_Path] [CSV_2_Name] [CSV_2_Path] ...
 """
 
+##########################
+## Original Data Config ##
+##########################
 PARCEL_AREA_DETAILS = "parcel_area"
 REAL_ESTATE_COMMERCIAL_DETAILS = "real_estate_commercial"
 REAL_ESTATE_RESIDENTIAL_DETAILS = "real_estate_residential"
+REAL_ESTATE_BASE = "real_estate_base"
+
+########################
+## Merged Data Config ##
+########################
 INDEX = "parcelnumber"
 SHARED_ATTRIBUTES = ["usecode", "yearbuilt"]
 
+#####################
+## postgres config ##
+#####################
 POSTGRES_ENDPOINT = "postgres://postgres:mysecretpassword@127.0.0.1:5431/firerisk"
 
 
@@ -85,6 +96,18 @@ def _fieldIsWanted(csvName, col):
             "squarefootagefinishedliving",
         ]
 
+    if csvName == REAL_ESTATE_BASE:
+        return col in [
+            "recordid_int",
+            "parcelnumber",
+            "streetnumber",
+            "streetname",
+            "unit",
+            "statecode",
+            "zone",
+            "acerage",
+        ]
+
     return False
 
 
@@ -125,9 +148,10 @@ def _insertIntoPostgres(df):
     engine.execute('drop table if exists {}'.format(table))
     logging.debug("inserting new data")
     df.to_sql(table, engine)
-    logging.debug("inserted data into db: {}".format(
-        engine.execute('SELECT * FROM {}'.format(table)).fetchall()))
 
+
+#    logging.debug("inserted data into db: {}".format(
+#        engine.execute('SELECT * FROM {}'.format(table)).fetchall()))
 
 if __name__ == '__main__':
     # parse args
