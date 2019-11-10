@@ -16,6 +16,7 @@ PARCEL_AREA_DETAILS = "parcel_area"
 REAL_ESTATE_COMMERCIAL_DETAILS = "real_estate_commercial"
 REAL_ESTATE_RESIDENTIAL_DETAILS = "real_estate_residential"
 INDEX = "parcelnumber"
+SHARED_ATTRIBUTES = [ "usecode", "yearbuilt"]
 
 
 def _normalizeCol(csvName, col):
@@ -23,8 +24,7 @@ def _normalizeCol(csvName, col):
     returns shared attribute name is it is one
     """
     col = col.lower()
-    sharedAttributes = ["parcelnumber", "usecode", "yearbuilt"]
-    if col in sharedAttributes: return col
+    if col in SHARED_ATTRIBUTES or col == INDEX: return col
     # add suffix if not standardized
     return "{}-{}".format(csvName, col)
 
@@ -101,7 +101,7 @@ def _mergeInData(csv, name, mergedCsv):
     if len(mergedCsv.index) == 0:
         return df
     # else return merged CSV on index
-    merged = mergedCsv.join(df.set_index(INDEX), on=[INDEX])
+    merged = mergedCsv.combine_first(df)
     # drop duplicates, if any
     merged.drop_duplicates(subset=[INDEX], inplace=True)
     return merged
