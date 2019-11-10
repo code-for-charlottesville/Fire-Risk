@@ -15,13 +15,7 @@ USAGE:
 PARCEL_AREA_DETAILS = "parcel_area"
 REAL_ESTATE_COMMERCIAL_DETAILS = "real_estate_commercial"
 REAL_ESTATE_RESIDENTIAL_DETAILS = "real_estate_residential"
-
-
-def _formatColumnName(col):
-    """
-    Using camel case for column names
-    """
-    pass
+INDEX = "parcelnumber"
 
 
 def _normalizeCol(csvName, col):
@@ -29,13 +23,8 @@ def _normalizeCol(csvName, col):
     returns shared attribute name is it is one
     """
     col = col.lower()
-    if csvName == PARCEL_AREA_DETAILS:
-        if col == "geoparcelidentificationnumber": return "GPIN"
-        if col == "parcelnumber": return "PIN"
-        if col == "zoning": return "zoning"
-
-    if csvName == REAL_ESTATE_COMMERCIAL_DETAILS:
-        if col == "parcelnumber": return "PIN"
+    sharedAttributes = ["parcelnumber", "usecode", "yearbuilt"]
+    if col in sharedAttributes: return col
     # add suffix if not standardized
     return "{}-{}".format(csvName, col)
 
@@ -59,8 +48,33 @@ def _fieldIsWanted(csvName, col):
             "usecode",
             "yearbuilt",
             "grossarea",
-            "storyheigt",
+            "storyheight",
             "numberofstories",
+        ]
+
+    if csvName == REAL_ESTATE_RESIDENTIAL_DETAILS:
+        return col in [
+            "recordid_int",
+            "parcelnumber",
+            "usecode",
+            "style",
+            "grade",
+            "roof",
+            "flooring",
+            "heating",
+            "fireplace",
+            "yearbuilt",
+            "totalrooms",
+            "bedrooms",
+            "halfbathrooms",
+            "fullbathrooms",
+            "basementgarage",
+            "basement",
+            "finishedbasement",
+            "basementtype",
+            "externalwalls",
+            "numberofstories",
+            "squarefootagefinishedliving",
         ]
 
     return False
@@ -86,8 +100,11 @@ def _mergeInData(csv, name, mergedCsv):
     # return this chart if there's nothing in the current chart
     if len(mergedCsv.index) == 0:
         return df
-    # else return merged CSV on "PIN"
-    return mergedCsv.join(df.set_index('PIN'), on='PIN')
+    # else return merged CSV on index
+    merged = mergedCsv.join(df.set_index(INDEX), on=[INDEX])
+    # drop duplicates, if any
+    merged.drop_duplicates(subset=[INDEX], inplace=True)
+    return merged
 
 
 if __name__ == '__main__':
@@ -104,3 +121,5 @@ if __name__ == '__main__':
         name = sys.argv[i]
         mergedCsv = _mergeInData(csv, name, mergedCsv)
         logging.debug("merged in chart {}:\n{}".format(name, mergedCsv))
+    # output csv to file
+    mergedCsv.to_csv("merged.csv", index=INDEX)
