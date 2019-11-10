@@ -2981,3 +2981,299 @@ DEBUG:root:merged in chart real_estate_base:
 [15615 rows x 39 columns]
 DEBUG:root:dropping previous table
 DEBUG:root:inserting new data
+INFO:root:Reading in csv: original_csv/Parcel_Area_Details.csv
+DEBUG:root:updated columns in parcel_area: Index(['parcel_area-objectid', 'parcel_area-assessment',
+       'parcel_area-geoparcelidentificationnumber',
+       'parcel_area-legaldescription', 'parcel_area-lotsquarefeet',
+       'parcelnumber', 'parcel_area-zoning'],
+      dtype='object')
+DEBUG:root:merged in chart parcel_area:
+       parcel_area-objectid  parcel_area-assessment  ...  parcelnumber parcel_area-zoning
+0                     13413                28866800  ...     48B001000               R-1S
+1                     12523                  957900  ...     41B004A00               MLTP
+2                      1326                  305600  ...     420044000                R-1
+3                      1304                  331300  ...     420043000                R-1
+4                     12213                  308800  ...     460001600                R-3
+...                     ...                     ...  ...           ...                ...
+15663                 39287                  398900  ...     21A100001               R-1S
+15664                 39288                  110000  ...     21A100002               R-1S
+15665                 39289                  110000  ...     21A100003               R-1S
+15666                 39290                  110000  ...     21A100004               R-1S
+15667                 71419                     100  ...     590379000                PUD
+
+[15668 rows x 7 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Commercial_Details.csv
+DEBUG:root:updated columns in real_estate_commercial: Index(['real_estate_commercial-recordid_int', 'parcelnumber',
+       'real_estate_commercial-usecode', 'real_estate_commercial-yearbuilt',
+       'real_estate_commercial-grossarea',
+       'real_estate_commercial-storyheight',
+       'real_estate_commercial-numberofstories'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_commercial:
+       parcel_area-objectid  ...  real_estate_commercial-numberofstories
+0                     13413  ...                                     1.0
+1                     12523  ...                                     NaN
+2                      1326  ...                                     NaN
+3                      1304  ...                                     NaN
+4                     12213  ...                                     NaN
+...                     ...  ...                                     ...
+15663                 39287  ...                                     NaN
+15664                 39288  ...                                     NaN
+15665                 39289  ...                                     NaN
+15666                 39290  ...                                     NaN
+15667                 71419  ...                                     NaN
+
+[15615 rows x 13 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Residential_Details.csv
+DEBUG:root:updated columns in real_estate_residential: Index(['real_estate_residential-recordid_int', 'parcelnumber',
+       'real_estate_residential-usecode', 'real_estate_residential-style',
+       'real_estate_residential-grade', 'real_estate_residential-roof',
+       'real_estate_residential-flooring', 'real_estate_residential-heating',
+       'real_estate_residential-fireplace',
+       'real_estate_residential-yearbuilt',
+       'real_estate_residential-totalrooms',
+       'real_estate_residential-bedrooms',
+       'real_estate_residential-halfbathrooms',
+       'real_estate_residential-fullbathrooms',
+       'real_estate_residential-basementgarage',
+       'real_estate_residential-basement',
+       'real_estate_residential-finishedbasement',
+       'real_estate_residential-basementtype',
+       'real_estate_residential-externalwalls',
+       'real_estate_residential-numberofstories',
+       'real_estate_residential-squarefootagefinishedliving'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_residential:
+       parcel_area-objectid  ...  real_estate_residential-squarefootagefinishedliving
+0                     13413  ...                                                NaN  
+1                     12523  ...                                                NaN  
+2                      1326  ...                                             1119.0  
+3                      1304  ...                                             1119.0  
+4                     12213  ...                                             1787.0  
+...                     ...  ...                                                ...  
+15663                 39287  ...                                             2070.0  
+15664                 39288  ...                                                NaN  
+15665                 39289  ...                                                NaN  
+15666                 39290  ...                                                NaN  
+15667                 71419  ...                                                NaN  
+
+[15615 rows x 33 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Base_Data.csv
+DEBUG:root:updated columns in real_estate_base: Index(['real_estate_base-recordid_int', 'parcelnumber',
+       'real_estate_base-streetnumber', 'real_estate_base-streetname',
+       'real_estate_base-unit', 'real_estate_base-statecode',
+       'real_estate_base-zone'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_base:
+       parcel_area-objectid  ...  real_estate_base-zone
+0                     13413  ...                   R-1S
+1                     12523  ...                   MLTP
+2                      1326  ...                    R-1
+3                      1304  ...                    R-1
+4                     12213  ...                    R-3
+...                     ...  ...                    ...
+15663                 39287  ...                   R-1S
+15664                 39288  ...                   R-1S
+15665                 39289  ...                   R-1S
+15666                 39290  ...                   R-1S
+15667                 71419  ...                    PUD
+
+[15615 rows x 39 columns]
+INFO:root:Reading in csv: original_csv/Parcel_Area_Details.csv
+DEBUG:root:updated columns in parcel_area: Index(['parcel_area-objectid', 'parcel_area-assessment',
+       'parcel_area-geoparcelidentificationnumber',
+       'parcel_area-legaldescription', 'parcel_area-lotsquarefeet',
+       'parcelnumber', 'parcel_area-zoning'],
+      dtype='object')
+DEBUG:root:merged in chart parcel_area:
+       parcel_area-objectid  parcel_area-assessment  ...  parcelnumber parcel_area-zoning
+0                     13413                28866800  ...     48B001000               R-1S
+1                     12523                  957900  ...     41B004A00               MLTP
+2                      1326                  305600  ...     420044000                R-1
+3                      1304                  331300  ...     420043000                R-1
+4                     12213                  308800  ...     460001600                R-3
+...                     ...                     ...  ...           ...                ...
+15663                 39287                  398900  ...     21A100001               R-1S
+15664                 39288                  110000  ...     21A100002               R-1S
+15665                 39289                  110000  ...     21A100003               R-1S
+15666                 39290                  110000  ...     21A100004               R-1S
+15667                 71419                     100  ...     590379000                PUD
+
+[15668 rows x 7 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Commercial_Details.csv
+DEBUG:root:updated columns in real_estate_commercial: Index(['real_estate_commercial-recordid_int', 'parcelnumber',
+       'real_estate_commercial-usecode', 'real_estate_commercial-yearbuilt',
+       'real_estate_commercial-grossarea',
+       'real_estate_commercial-storyheight',
+       'real_estate_commercial-numberofstories'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_commercial:
+       parcel_area-objectid  ...  real_estate_commercial-numberofstories
+0                     13413  ...                                     1.0
+1                     12523  ...                                     NaN
+2                      1326  ...                                     NaN
+3                      1304  ...                                     NaN
+4                     12213  ...                                     NaN
+...                     ...  ...                                     ...
+15663                 39287  ...                                     NaN
+15664                 39288  ...                                     NaN
+15665                 39289  ...                                     NaN
+15666                 39290  ...                                     NaN
+15667                 71419  ...                                     NaN
+
+[15615 rows x 13 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Residential_Details.csv
+DEBUG:root:updated columns in real_estate_residential: Index(['real_estate_residential-recordid_int', 'parcelnumber',
+       'real_estate_residential-usecode', 'real_estate_residential-style',
+       'real_estate_residential-grade', 'real_estate_residential-roof',
+       'real_estate_residential-flooring', 'real_estate_residential-heating',
+       'real_estate_residential-fireplace',
+       'real_estate_residential-yearbuilt',
+       'real_estate_residential-totalrooms',
+       'real_estate_residential-bedrooms',
+       'real_estate_residential-halfbathrooms',
+       'real_estate_residential-fullbathrooms',
+       'real_estate_residential-basementgarage',
+       'real_estate_residential-basement',
+       'real_estate_residential-finishedbasement',
+       'real_estate_residential-basementtype',
+       'real_estate_residential-externalwalls',
+       'real_estate_residential-numberofstories',
+       'real_estate_residential-squarefootagefinishedliving'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_residential:
+       parcel_area-objectid  ...  real_estate_residential-squarefootagefinishedliving
+0                     13413  ...                                                NaN  
+1                     12523  ...                                                NaN  
+2                      1326  ...                                             1119.0  
+3                      1304  ...                                             1119.0  
+4                     12213  ...                                             1787.0  
+...                     ...  ...                                                ...  
+15663                 39287  ...                                             2070.0  
+15664                 39288  ...                                                NaN  
+15665                 39289  ...                                                NaN  
+15666                 39290  ...                                                NaN  
+15667                 71419  ...                                                NaN  
+
+[15615 rows x 33 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Base_Data.csv
+DEBUG:root:updated columns in real_estate_base: Index(['real_estate_base-recordid_int', 'parcelnumber',
+       'real_estate_base-streetnumber', 'real_estate_base-streetname',
+       'real_estate_base-unit', 'real_estate_base-statecode',
+       'real_estate_base-zone'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_base:
+       parcel_area-objectid  ...  real_estate_base-zone
+0                     13413  ...                   R-1S
+1                     12523  ...                   MLTP
+2                      1326  ...                    R-1
+3                      1304  ...                    R-1
+4                     12213  ...                    R-3
+...                     ...  ...                    ...
+15663                 39287  ...                   R-1S
+15664                 39288  ...                   R-1S
+15665                 39289  ...                   R-1S
+15666                 39290  ...                   R-1S
+15667                 71419  ...                    PUD
+
+[15615 rows x 39 columns]
+DEBUG:root:dropping previous table
+DEBUG:root:inserting new data
+INFO:root:Reading in csv: original_csv/Parcel_Area_Details.csv
+DEBUG:root:updated columns in parcel_area: Index(['parcel_area-objectid', 'parcel_area-assessment',
+       'parcel_area-geoparcelidentificationnumber',
+       'parcel_area-legaldescription', 'parcel_area-lotsquarefeet',
+       'parcelnumber', 'parcel_area-zoning'],
+      dtype='object')
+DEBUG:root:merged in chart parcel_area:
+       parcel_area-objectid  parcel_area-assessment  ...  parcelnumber parcel_area-zoning
+0                     13413                28866800  ...     48B001000               R-1S
+1                     12523                  957900  ...     41B004A00               MLTP
+2                      1326                  305600  ...     420044000                R-1
+3                      1304                  331300  ...     420043000                R-1
+4                     12213                  308800  ...     460001600                R-3
+...                     ...                     ...  ...           ...                ...
+15663                 39287                  398900  ...     21A100001               R-1S
+15664                 39288                  110000  ...     21A100002               R-1S
+15665                 39289                  110000  ...     21A100003               R-1S
+15666                 39290                  110000  ...     21A100004               R-1S
+15667                 71419                     100  ...     590379000                PUD
+
+[15668 rows x 7 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Commercial_Details.csv
+DEBUG:root:updated columns in real_estate_commercial: Index(['real_estate_commercial-recordid_int', 'parcelnumber',
+       'real_estate_commercial-usecode', 'real_estate_commercial-yearbuilt',
+       'real_estate_commercial-grossarea',
+       'real_estate_commercial-storyheight',
+       'real_estate_commercial-numberofstories'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_commercial:
+       parcel_area-objectid  ...  real_estate_commercial-numberofstories
+0                     13413  ...                                     1.0
+1                     12523  ...                                     NaN
+2                      1326  ...                                     NaN
+3                      1304  ...                                     NaN
+4                     12213  ...                                     NaN
+...                     ...  ...                                     ...
+15663                 39287  ...                                     NaN
+15664                 39288  ...                                     NaN
+15665                 39289  ...                                     NaN
+15666                 39290  ...                                     NaN
+15667                 71419  ...                                     NaN
+
+[15615 rows x 13 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Residential_Details.csv
+DEBUG:root:updated columns in real_estate_residential: Index(['real_estate_residential-recordid_int', 'parcelnumber',
+       'real_estate_residential-usecode', 'real_estate_residential-style',
+       'real_estate_residential-grade', 'real_estate_residential-roof',
+       'real_estate_residential-flooring', 'real_estate_residential-heating',
+       'real_estate_residential-fireplace',
+       'real_estate_residential-yearbuilt',
+       'real_estate_residential-totalrooms',
+       'real_estate_residential-bedrooms',
+       'real_estate_residential-halfbathrooms',
+       'real_estate_residential-fullbathrooms',
+       'real_estate_residential-basementgarage',
+       'real_estate_residential-basement',
+       'real_estate_residential-finishedbasement',
+       'real_estate_residential-basementtype',
+       'real_estate_residential-externalwalls',
+       'real_estate_residential-numberofstories',
+       'real_estate_residential-squarefootagefinishedliving'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_residential:
+       parcel_area-objectid  ...  real_estate_residential-squarefootagefinishedliving
+0                     13413  ...                                                NaN  
+1                     12523  ...                                                NaN  
+2                      1326  ...                                             1119.0  
+3                      1304  ...                                             1119.0  
+4                     12213  ...                                             1787.0  
+...                     ...  ...                                                ...  
+15663                 39287  ...                                             2070.0  
+15664                 39288  ...                                                NaN  
+15665                 39289  ...                                                NaN  
+15666                 39290  ...                                                NaN  
+15667                 71419  ...                                                NaN  
+
+[15615 rows x 33 columns]
+INFO:root:Reading in csv: original_csv/Real_Estate_Base_Data.csv
+DEBUG:root:updated columns in real_estate_base: Index(['real_estate_base-recordid_int', 'parcelnumber',
+       'real_estate_base-streetnumber', 'real_estate_base-streetname',
+       'real_estate_base-unit', 'real_estate_base-statecode',
+       'real_estate_base-zone'],
+      dtype='object')
+DEBUG:root:merged in chart real_estate_base:
+       parcel_area-objectid  ...  real_estate_base-zone
+0                     13413  ...                   R-1S
+1                     12523  ...                   MLTP
+2                      1326  ...                    R-1
+3                      1304  ...                    R-1
+4                     12213  ...                    R-3
+...                     ...  ...                    ...
+15663                 39287  ...                   R-1S
+15664                 39288  ...                   R-1S
+15665                 39289  ...                   R-1S
+15666                 39290  ...                   R-1S
+15667                 71419  ...                    PUD
+
+[15615 rows x 39 columns]

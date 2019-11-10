@@ -43,18 +43,22 @@ def _combineSharedAttributes(df):
     """
     combine shared attributes to make more cleaner columns
     """
-    usecode = []
-    yearbuilt = []
-    for index, row in df.iterrows():
-        if math.isnan(row["real_estate_residential-yearbuilt"]):
-            yearbuilt.append(row["real_estate_commercial-yearbuilt"])
-        else:
-            yearbuilt.append(row["real_estate_residential-yearbuilt"])
 
-    df = df.drop(columns=[
-        "real_estate_commercial-yearbuilt", "real_estate_residential-yearbuilt"
-    ])
-    df.insert(0, "yearbuilt", yearbuilt, True)
+    for s in ["yearbuilt"]:
+        newValues = []
+
+        for index, row in df.iterrows():
+            if math.isnan(row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" + s]):
+                newValues.append(row[REAL_ESTATE_COMMERCIAL_DETAILS + "-" + s])
+            else:
+                newValues.append(row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" +
+                                     s])
+
+        df = df.drop(columns=[
+            REAL_ESTATE_COMMERCIAL_DETAILS + "-" +
+            s, REAL_ESTATE_RESIDENTIAL_DETAILS + "-" + s
+        ])
+        df.insert(0, s, newValues, True)
     return df
 
 
