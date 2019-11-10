@@ -44,11 +44,21 @@ def _combineSharedAttributes(df):
     combine shared attributes to make more cleaner columns
     """
 
-    for s in ["yearbuilt"]:
+    for s in SHARED_ATTRIBUTES:
         newValues = []
 
         for index, row in df.iterrows():
-            if math.isnan(row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" + s]):
+
+            useResidential = False
+
+            if s == "yearbuilt":
+                useResidential = math.isnan(
+                    row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" + s])
+            if s == "usecode":
+                useResidential = row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" +
+                                     s] == ""
+
+            if useResidential:
                 newValues.append(row[REAL_ESTATE_COMMERCIAL_DETAILS + "-" + s])
             else:
                 newValues.append(row[REAL_ESTATE_RESIDENTIAL_DETAILS + "-" +
