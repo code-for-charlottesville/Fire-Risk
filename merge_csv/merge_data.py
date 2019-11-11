@@ -4,12 +4,7 @@ import pandas as pd
 import json
 import logging
 import sys
-import psycopg2
 from sqlalchemy import create_engine
-import sql
-import csv
-from io import StringIO
-import numpy as np
 import math
 
 USAGE = """
