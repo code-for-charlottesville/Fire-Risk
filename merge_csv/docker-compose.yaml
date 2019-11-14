@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  postgres:
+    command: -c hba_file=/var/lib/postgresql/pg_hba.conf
+    build:
+      context: ./postgres
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: firerisk

@@ -1,0 +1,5 @@
+FROM postgres:10
+
+COPY ./pg_hba.conf /var/lib/postgresql/pg_hba.conf
+
+RUN su postgres
