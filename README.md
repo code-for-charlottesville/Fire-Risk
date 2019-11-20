@@ -53,6 +53,10 @@ We're going to build the following **deliverables**:
 
 2. We're going to include a map that displays the risk score of any parcel someone clicks on, with a search bar where someone can enter their address.
 
+## Resources
+
+Random forest machine learning model from Hack Cville 2018: http://charlottesville-fire-help.herokuapp.com/
+
 ## Data
 All data for this project will come from the Charlottesville open data portal
 
