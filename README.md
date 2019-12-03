@@ -16,6 +16,14 @@ Our slides for tonight: https://tinyurl.com/CFChacknight2
 
 [Code for Charlottesville](codeforcharlottesville.org)
 
+[A previous version of the web-app by Jackson Barkstrom and Garrett Vercoe](http://charlottesville-fire-help.herokuapp.com/)
+
+Data and code for this web-app:
+
+* https://github.com/Smart-Cville/CID-2018-CFD-Challenge/tree/master/data
+
+* https://github.com/Smart-Cville/CID-2018-CFD-Challenge/tree/master/jupyter
+
 **Schedule:** We will be working with this dataset on
 
 * Tuesday, November 5, 6:30-9pm, Center for Civic Innovation
